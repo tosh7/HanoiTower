@@ -9,17 +9,32 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    var number: Int = 3
+    var total: Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        hanoi(num: number, from: "Left", dst: "Center", work: "Right")
+        
+        print("Total is \(total)!")
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func hanoi(num:Int, from: String, dst: String, work: String){
+        if num > 0{
+            hanoi(num: num - 1, from: from, dst: work, work: dst)
+            printer(b: from, c: dst)
+            hanoi(num: num - 1, from: work, dst: dst, work: from)
+        }
+        
     }
-
-
+    
+    func printer(b: String, c: String){
+        total = total + 1
+        print("\(total): 棒", b, "から棒", c,"へ移動")
+        
+    }
+    
 }
 
